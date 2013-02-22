@@ -3,9 +3,9 @@
 	/*
 	Plugin Name: Buddypress Activity Graphs
 	Description: This plugin displays graphs for each user to allow activities on buddypress sites to be displayed as graphs 
-	Version: 0.1
+	Version: 0.2
 	Author: pgogy
-	Plugin URI: http://www.pgogy.com/code/buddypress_activity_graph
+	Plugin URI: http://www.pgogy.com/code/groups/wordpress/buddypress-activity-graphs/
 	Author URI: http://www.pgogy.com
 	*/
 	
