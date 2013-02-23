@@ -9,6 +9,8 @@ Allows visualisations to be shown for how users use your buddypress site
 
 Please see http://www.pgogy.com and http://www.pgogy.com/code/groups/wordpress/buddypress-activity-graphs/ for support
 
+[vimeo https://vimeo.com/60034456]
+
 == Description ==
 
 BuddyPress Activity Graphs allows a BuddyPress install to display various graphs and visualisations on a user's profile page.
