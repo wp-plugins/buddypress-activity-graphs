@@ -15,12 +15,12 @@ function buddypress_activity_graph_javascript(action,function_name) {
 		var data = {
 			action: action
 		};
-
+		
 		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 		$.post(ajaxurl, data, function(response) {
 			
 			obj = eval(response);
-						
+									
 			if(obj[0].error!=undefined){
 			
 				document.getElementById("buddypress_activity_graph_ajax_response").innerHTML = obj[0].error;

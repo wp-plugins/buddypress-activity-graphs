@@ -3,11 +3,11 @@
 	/*
 	Plugin Name: Buddypress Activity Graphs
 	Description: This plugin displays graphs for each user to allow activities on buddypress sites to be displayed as graphs 
-	Version: 0.3
+	Version: 0.4
 	Author: pgogy
 	*/
 	
-	class buddypress_activity_graph{
+	class buddypress_activity_library{
 
 		function activity_graph_method(){
 		
@@ -36,29 +36,6 @@
 			
 		}    
  
-		function activity_graph_nav() {
-		
-			  global $bp;
-		 
-			  bp_core_new_nav_item( 
-				
-				array( 
-					'name' => __( 'Activities', 'buddypress' ), 
-					'slug' => 'activity_graphs', 
-					'position' => 75,
-					'screen_function' => array($this, 'activity_graph_link'),
-					'show_for_displayed_user' => true,
-					'default_subnav_slug' => 'activity_graphs',
-					'item_css_id' => 'activity_graphs'
-				)
-	 
-			  );
-		}
-		 
-		function activity_graph_title() {
-			echo 'My Activities';
-		}
-		 
 		function activity_graph_content() {
 			
 			$dir = opendir(dirname(__FILE__) . "/buddypress_activity_graph");
@@ -107,35 +84,27 @@
 					require_once(dirname(__FILE__) . "/buddypress_activity_graph/" . $file);	
 					$class_name = str_replace(".php","",$file);
 					$plugin = new $class_name;
-					$data = $plugin->setup();
-					add_action('wp_ajax_' . $data->ajax_action, array( $data->obj, "ajax_action"));
-					add_action('wp_ajax_nopriv_' . $data->ajax_action , array( $data->obj, "ajax_action"));
+					$data = $plugin->setup();					
+					add_action('wp_ajax_' . $data->ajax_action, array( $plugin, "ajax_action"));
+					add_action('wp_ajax_nopriv_' . $data->ajax_action , array( $plugin, "ajax_action"));
 				
 				}
 			
-			}
-			
+			}			
 			
 		}
 		
-		function activity_graph_link(){
-		
-			//add title and content here – last is to call the members plugin.php template
-
-			add_action( "bp_template_title", array($this, "activity_graph_title") );
-
-			add_action( "bp_template_content", array($this, "activity_graph_content") );
-
-			bp_core_load_template( apply_filters( "bp_core_template_plugin", "members/single/plugins" ) );
-		
+		function bpag_init() {
+			require_once("buddypress_activity_graph_lib.php");
+			bp_register_group_extension( 'buddypress_activity_graph' );
 		}
 	
 	}
 	
-	$bps = new buddypress_activity_graph;
+	$bps = new buddypress_activity_library;
 	
 	add_action('init', array($bps, 'activity_graph_ajax'));
-	add_action('bp_setup_nav', array($bps, 'activity_graph_nav'), 1000 );
-	add_action('wp_enqueue_scripts', array($bps, 'activity_graph_method'));
+	add_action('wp_enqueue_scripts', array($bps, 'activity_graph_method'));	
+	add_action('bp_init', array($bps, 'bpag_init') );
 	
 ?>

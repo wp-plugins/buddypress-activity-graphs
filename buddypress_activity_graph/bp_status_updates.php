@@ -16,7 +16,7 @@
 			global $wpdb, $bp;
 			
 			$myrows = $wpdb->get_results(
-					"SELECT content FROM " . $wpdb->prefix . "bp_activity where type='activity_update' and user_id='" . $bp->displayed_user->id . "'"
+				"SELECT content FROM " . $wpdb->prefix . "bp_activity where type='activity_update' and item_id=" . $bp->groups->current_group->id
 			);
 			
 			$conversations = new StdClass();
@@ -64,7 +64,7 @@
 			}else{
 
 				$error = new StdClass();
-				$error->error = "No status updates found for this user.";
+				$error->error = "No mentions found.";
 				
 				array_push($data,$error);
 

@@ -42,7 +42,7 @@
 			}else{
 
 				$error = new StdClass();
-				$error->error = "No activities found for this user.";
+				$error->error = "No activities found.";
 				
 				array_push($data,$error);
 

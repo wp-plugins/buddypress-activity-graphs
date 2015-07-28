@@ -15,17 +15,21 @@
 			global $wpdb, $bp;
 			
 			$myrows = $wpdb->get_results(
-					"SELECT forum_name, count(forum_name) as forum_count FROM " . $wpdb->prefix . "bp_activity, " . $wpdb->prefix . "bb_forums where forum_id = item_id and type like 'new_forum_%' and user_id='" . $bp->displayed_user->id . "'"
+					"SELECT topic_title, COUNT( topic_title ) AS forum_count
+					FROM " . $wpdb->prefix . "bb_posts p, " . $wpdb->prefix . "bb_topics t, " . $wpdb->prefix . "bb_forums f
+					WHERE t.forum_id = p.forum_id
+					AND t.forum_id = f.forum_id
+					AND forum_order = " . $bp->groups->current_group->id
 			);
 			
 			$data = array();
 			
-			if($myrows[0]->forum_name!=""){
+			if($myrows[0]->topic_title!=""){
 										
 				foreach($myrows as $row){
 				
 					$obj = new StdClass();
-					$obj->label = ucfirst(str_replace("_"," ",$row->forum_name));
+					$obj->label = ucfirst(str_replace("_"," ",$row->topic_title));
 					$obj->value = $row->forum_count;
 				
 					array_push($data, $obj);

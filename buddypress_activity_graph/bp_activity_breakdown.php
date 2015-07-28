@@ -12,10 +12,11 @@
 		}
 		
 		function ajax_action(){
+
 			global $wpdb, $bp;
-			
+						
 			$myrows = $wpdb->get_results(
-					"SELECT type, count(type) as type_count FROM " . $wpdb->prefix . "bp_activity where user_id='" . $bp->displayed_user->id . "' group by type"
+					"SELECT type, count(type) as type_count FROM " . $wpdb->prefix . "bp_activity where item_id = " . $bp->groups->current_group->id . " group by type"
 			);
 			
 			$data = array();
@@ -45,7 +46,7 @@
 
 			}
 			
-			die();
+			die(0);
 			
 		}
 		

@@ -16,7 +16,7 @@
 			global $wpdb, $bp;
 			
 			$myrows = $wpdb->get_results(
-					"SELECT content FROM " . $wpdb->prefix . "bp_activity where user_id='" . $bp->displayed_user->id . "' and content!=''"
+					"SELECT content FROM " . $wpdb->prefix . "bp_activity where item_id='" . $bp->groups->current_group->id . "' and content!=''"
 			);
 			
 			$conversations = new StdClass();

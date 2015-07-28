@@ -2,8 +2,8 @@
 Contributors: pgogy
 Tags: buddypress, social networking, activity, visualisations, tag cloud
 Requires at least: 3.4
-Tested up to: 3.5
-Stable tag: 0.3
+Tested up to: 4.2
+Stable tag: 0.4
 
 Allows visualisations to be shown for how users use your buddypress site
 
