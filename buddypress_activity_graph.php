@@ -3,7 +3,7 @@
 	/*
 	Plugin Name: Buddypress Activity Graphs
 	Description: This plugin displays graphs for each user to allow activities on buddypress sites to be displayed as graphs 
-	Version: 0.5
+	Version: 0.51
 	Author: pgogy
 	*/
 	
